@@ -11,7 +11,7 @@ variable "aws_region" {
   type        = string
   validation {
     condition     = contains(var.region, var.aws_region)
-    error_message = "The region have to one of this list of region! \n : ${var.region}"
+    error_message = "The region have to one of this list of region! eu-west-1, eu-west-2, eu-west-3, eu-central-1, eu-north-1"
   }
 }
 
