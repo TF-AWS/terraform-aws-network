@@ -25,4 +25,4 @@ variable "vpc_cidr" {
     condition     = can(cidrhost(var.vpc_cidr, 0)) && can(cidrsubnet(var.vpc_cidr, 8, 0))
     error_message = "The CIDR ${var.vpc_cidr} is not a valide CIDR for a VPC. Please enter a valid CIDR block in the format '10.0.0.0/16'."
   }
-}
+}   
