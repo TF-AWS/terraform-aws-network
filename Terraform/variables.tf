@@ -4,7 +4,7 @@ variable "region" {
   default     = ["eu-west-1", "eu-west-2", "eu-west-3", "eu-central-1", "eu-north-1"]
 }
 
-// AWS informations
+// AWS informations 
 
 variable "aws_region" {
   description = "The AWS region use to deploy all services"

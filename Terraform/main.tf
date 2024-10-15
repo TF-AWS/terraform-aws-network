@@ -5,4 +5,4 @@ resource "aws_vpc" "network_vpc" {
     Name       = "network_vpc"
     CreateDate = formatdate("DD MMM YYYY hh:mm ZZZ", timestamp())
   }
-}
+} 

@@ -11,5 +11,5 @@ terraform {
 
 provider "aws" {
   region = var.aws_region
-  # chose the right authent methode
+  # chose the right authent methode 
 }
