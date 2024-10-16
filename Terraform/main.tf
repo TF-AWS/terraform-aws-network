@@ -10,5 +10,22 @@ resource "aws_vpc" "network_vpc" {
     CreateDate = formatdate("DD MMM YYYY hh:mm ZZZ", timestamp())
     Author     = var.tag_author
     Project    = var.tag_project
-  } 
-} 
+  }
+}
+
+resource "aws_internet_gateway" "network_igw" {
+  vpc_id = aws_vpc.network_vpc.id
+
+  tags = {
+    Name       = "Network-igw-${var.tag_project}"
+    CreateDate = formatdate("DD MMM YYYY hh:mm ZZZ", timestamp())
+    Author     = var.tag_author
+    Project    = var.tag_project
+  }
+}
+
+# combien de subnet public ?
+# une table de routage pour toute subnet public
+# combien de subnet privé ?
+# une table de routage pour un subnet prive
+# combien de zone de disponibilité ?
