@@ -50,7 +50,7 @@ variable "vpc_ipv4_netmask_length" {
     condition     = var.vpc_ipv4_ipam_pool_id != "" || var.vpc_ipv4_netmask_length == ""
     error_message = "You have to define vpc_ipv4_ipam_pool_id before use this variable"
   }
-  default = ""
+  default = 8
 }
 
 variable "vpc_ipv6_cidr_block" {
