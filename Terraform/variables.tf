@@ -37,6 +37,7 @@ variable "vpc_instance_tenancy" {
   default = "default"
 }
 
+/*
 variable "vpc_ipv4_ipam_pool_id" {
   description = "The id of the ipv4 ipam we want use on vpc"
   type        = string
@@ -51,7 +52,7 @@ variable "vpc_ipv4_netmask_length" {
     error_message = "You have to define vpc_ipv4_ipam_pool_id before use this variable"
   }
   default = 8
-}
+} */
 
 variable "vpc_ipv6_cidr_block" {
   description = "The CIDR IPV6 use to the VPC from IPAM Pool"
