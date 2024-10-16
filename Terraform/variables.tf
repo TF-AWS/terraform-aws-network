@@ -20,26 +20,27 @@ variable "aws_region" {
 variable "vpc_cidr" {
   description = "The CIDR IPV4 use to the VPC"
   type        = string
-  default     = "10.0.0.0/16"
   validation {
     condition     = can(cidrhost(var.vpc_cidr, 0)) && can(cidrsubnet(var.vpc_cidr, 8, 0))
     error_message = "The CIDR ${var.vpc_cidr} is not a valide CIDR for a VPC. Please enter a valid CIDR block in the format '10.0.0.0/16'."
   }
+  default = "10.0.0.0/16"
 }
 
 variable "vpc_instance_tenancy" {
   description = "A tenancy option for instances launched into the VPC."
   type        = string
-  default     = "default"
   validation {
     condition     = contains(["default", "instance_tenancy"], var.vpc_instance_tenancy)
     error_message = "The value for 'instance_tenancy' must be either 'default' or 'dedicated'."
   }
+  default = "default"
 }
 
 variable "vpc_ipv4_ipam_pool_id" {
   description = "The id of the ipv4 ipam we want use on vpc"
   type        = string
+  default     = ""
 }
 
 variable "vpc_ipv4_netmask_length" {
@@ -49,11 +50,13 @@ variable "vpc_ipv4_netmask_length" {
     condition     = var.vpc_ipv4_ipam_pool_id != "" || var.vpc_ipv4_netmask_length == ""
     error_message = "You have to define vpc_ipv4_ipam_pool_id before use this variable"
   }
+  default = ""
 }
 
 variable "vpc_ipv6_cidr_block" {
   description = "The CIDR IPV6 use to the VPC from IPAM Pool"
   type        = string
+  default     = ""
 }
 
 variable "vpc_enable_dns_support" {
