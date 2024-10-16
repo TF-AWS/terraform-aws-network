@@ -10,5 +10,5 @@ resource "aws_vpc" "network_vpc" {
     CreateDate = formatdate("DD MMM YYYY hh:mm ZZZ", timestamp())
     Author     = var.tag_author
     Project    = var.tag_project
-  }
+  } 
 } 
