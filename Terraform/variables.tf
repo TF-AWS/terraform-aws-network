@@ -18,7 +18,7 @@ variable "aws_region" {
 // VPC informations
 
 variable "vpc_cidr" {
-  description = "The CIDR use to the VPC"
+  description = "The CIDR IPV4 use to the VPC"
   type        = string
   default     = "10.0.0.0/16"
   validation {
@@ -39,11 +39,50 @@ variable "vpc_instance_tenancy" {
 
 variable "vpc_ipv4_ipam_pool_id" {
   description = "The id of the ipv4 ipam we want use on vpc"
-  type = string
+  type        = string
 }
 
-variable "tag_project" {
+variable "vpc_ipv4_netmask_length" {
+  description = "The netmask length we want use on vpc. This require ipv4_ipam_pool_id"
+  type        = number
+  validation {
+    condition     = var.vpc_ipv4_ipam_pool_id != "" || var.vpc_ipv4_netmask_length == ""
+    error_message = "You have to define vpc_ipv4_ipam_pool_id before use this variable"
+  }
+}
+
+variable "vpc_ipv6_cidr_block" {
+  description = "The CIDR IPV6 use to the VPC from IPAM Pool"
   type        = string
+}
+
+variable "vpc_enable_dns_support" {
+  description = "A boolean flag to enable/disable DNS support in the VPC."
+  type        = bool
+  default     = true
+}
+
+variable "vpc_enable_network_address_usage_metrics" {
+  description = "Indicates whether Network Address Usage metrics are enabled for your VPC."
+  type        = bool
+  default     = false
+}
+
+variable "vpc_enable_dns_hostnames" {
+  description = "A boolean flag to enable/disable DNS hostnames in the VPC."
+  type        = bool
+  default     = false
+}
+
+
+variable "tag_project" {
   description = "The project name"
+  type        = string
   default     = "Network_vpc"
+}
+
+variable "tag_author" {
+  description = "The author of the project"
+  type        = string
+  default     = "Network Module"
 }
