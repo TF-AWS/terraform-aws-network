@@ -1,18 +1,30 @@
-variable "region" {
-  description = "The posible value of the AWS region"
-  type        = list(string)
-  default     = ["eu-west-1", "eu-west-2", "eu-west-3", "eu-central-1", "eu-north-1"]
+locals {
+  regions = ["us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-south-2", "ap-southeast-1", "ap-southeast-2", "ap-southeast-3", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ca-central-1", "eu-central-1", "eu-central-2", "eu-west-1", "eu-west-2", "eu-west-3", "eu-south-1", "eu-south-2", "eu-north-1", "me-south-1", "me-central-1", "sa-east-1"]
 }
 
 // AWS informations 
 
 variable "aws_region" {
-  description = "The AWS region use to deploy all services"
+  description = "The AWS region use to deploy all services, by default the value is us-east-1"
   type        = string
   validation {
-    condition     = contains(var.region, var.aws_region)
-    error_message = "The region have to one of this list of region! eu-west-1, eu-west-2, eu-west-3, eu-central-1, eu-north-1"
+    condition     = contains(local.regions, var.aws_region)
+    error_message = "The region is not a valid AWS region"
   }
+  default     = "us-east-1"
+}
+
+//récupérer le nombre d'availability zones de la region utiliser par l'utilisateur.
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
+// Avalability zones
+
+variable "az_number" {
+  description = "The number of the Availability Zones where we want deploy our subnets"
+  type        = number
+  default = 1
 }
 
 // VPC informations

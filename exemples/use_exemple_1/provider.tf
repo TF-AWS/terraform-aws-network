@@ -1,4 +1,4 @@
 provider "aws" {
-  region = var.aws_region
+  region = "eu-central-1"
   # chose the right authent methode 
 }
